@@ -6,6 +6,8 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 public class TestBase {
@@ -14,7 +16,11 @@ public class TestBase {
 
     @BeforeMethod
     public void init(){
-        driver = new ChromeDriver();
+        Map<String, Object> prefs = new HashMap<>();
+        prefs.put("intl.accept_languages", "en");
+        ChromeOptions options = new ChromeOptions();
+        options.setExperimentalOption("prefs", prefs);
+        driver = new ChromeDriver(options);
         driver.manage().window().maximize();
         driver.get("http://selenium1py.pythonanywhere.com/en-gb/");
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
