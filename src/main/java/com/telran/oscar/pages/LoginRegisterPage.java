@@ -1,5 +1,6 @@
 package com.telran.oscar.pages;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -44,5 +45,12 @@ public class LoginRegisterPage extends BasePage {
         type(loginPassword, password);
         click(buttonLogIn);
         return new HomePage(driver);
+    }
+
+    @FindBy(xpath = "//*[contains(text(),' A user with that email address already exists')]")
+    WebElement errorEmailAddressExist;
+
+    public boolean existErrorEmailAddressExist() {
+        return (driver.findElements(By.xpath("errorEmailAddressExist")).size() > 0);
     }
 }

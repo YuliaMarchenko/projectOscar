@@ -1,15 +1,16 @@
-package com.telran.oscar.tests;
+package com.telran.oscar.tests.register.positive;
 
 import com.telran.oscar.pages.HomePage;
 import com.telran.oscar.pages.LoginRegisterPage;
 import com.telran.oscar.pages.ProfilePage;
+import com.telran.oscar.tests.TestBase;
 import data.UserData;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-public class RegisterTests extends TestBase {
+public class RegisterSimpleTest extends TestBase {
 
     @BeforeMethod
     public void ensurePrecondition() {
@@ -29,6 +30,7 @@ public class RegisterTests extends TestBase {
 
         Assert.assertTrue(home.getTextAlertIcon().contains("Thanks for registering!"));
         Assert.assertTrue(home.isLogoutLinkLinkExist());
+
     }
 
     @AfterMethod

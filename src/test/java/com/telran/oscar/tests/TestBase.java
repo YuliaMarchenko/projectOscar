@@ -22,7 +22,7 @@ public class TestBase {
         options.setExperimentalOption("prefs", prefs);
         driver = new ChromeDriver(options);
         driver.manage().window().maximize();
-        driver.get("http://selenium1py.pythonanywhere.com/en-gb/");
+        driver.get("https://latest.oscarcommerce.com");
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
     }
 

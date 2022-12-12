@@ -10,16 +10,15 @@ public class AllProductsPage extends BasePage {
         super(driver);
     }
 
-    // find new css
-    @FindBy(css =".btn.btn-primary.btn-block")
-    WebElement addBasket;
+    @FindBy(xpath ="//*[contains(text),'Add to basket']")
+    WebElement addToBasket;
 
-    @FindBy()
+    @FindBy(xpath = "//*[contains(text),'View basket']")
     WebElement viewBasket;
 
-    public BasketPage addProductInBasket(){
-        click(addBasket);
+    public CheckoutPage addProductInBasket(){
+        click(addToBasket);
         click(viewBasket);
-        return new BasketPage(driver);
+        return new CheckoutPage(driver);
     }
 }

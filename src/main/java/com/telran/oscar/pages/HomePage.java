@@ -26,7 +26,7 @@ public class HomePage extends BasePage {
         return alertIcon.getText();
     }
 
-    @FindBy(css = ".icon-user")
+    @FindBy(css = ".nav-link.mt-2.mt-lg-0")
     WebElement iconUser;
 
     public ProfilePage clickOnAccount() {
@@ -43,11 +43,10 @@ public class HomePage extends BasePage {
     }
 
     public boolean isLogoutLinkLinkExist(){
-        // return loginRegisterLink.isDisplayed();
         return (driver.findElements(By.id("logout_link")).size() > 0);
     }
 
-    @FindBy(css = "[href='/en-gb/catalogue/']")
+    @FindBy(xpath = "//*[contains(text(),'All products')]")
     WebElement allProducts;
 
     public AllProductsPage clickOnAllProducts(){

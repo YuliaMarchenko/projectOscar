@@ -1,6 +1,6 @@
 package com.telran.oscar.tests;
 
-import com.telran.oscar.pages.BasketPage;
+import com.telran.oscar.pages.CheckoutPage;
 import com.telran.oscar.pages.HomePage;
 import data.UserData;
 import org.testng.annotations.AfterMethod;
@@ -17,7 +17,7 @@ public class OrderTests extends TestBase {
     @Test
     public void orderPositiveTest() {
         new HomePage(driver).clickOnAllProducts();
-        new BasketPage(driver).order();
+        new CheckoutPage(driver).order();
     }
 
     @AfterMethod
