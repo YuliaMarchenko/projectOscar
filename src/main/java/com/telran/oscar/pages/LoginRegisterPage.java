@@ -47,10 +47,7 @@ public class LoginRegisterPage extends BasePage {
         return new HomePage(driver);
     }
 
-    @FindBy(xpath = "//*[contains(text(),' A user with that email address already exists')]")
-    WebElement errorEmailAddressExist;
-
     public boolean existErrorEmailAddressExist() {
-        return (driver.findElements(By.xpath("errorEmailAddressExist")).size() > 0);
+        return driver.findElements(By.xpath("//*[contains(text(),' A user with that email address already exists')]")).size() > 0;
     }
 }
