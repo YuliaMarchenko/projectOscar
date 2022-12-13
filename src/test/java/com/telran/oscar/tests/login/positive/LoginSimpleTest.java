@@ -1,4 +1,4 @@
-package com.telran.oscar.tests.register.positive;
+package com.telran.oscar.tests.login.positive;
 
 import com.telran.oscar.pages.HomePage;
 import com.telran.oscar.pages.LoginRegisterPage;
@@ -10,31 +10,33 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-public class RegisterSimpleTest extends TestBase {
+public class LoginSimpleTest extends TestBase {
 
     @BeforeMethod
     public void ensurePrecondition() {
 
         HomePage home = new HomePage(driver);
+        LoginRegisterPage loginRegisterPage = new LoginRegisterPage(driver);
 
         home.clickOnLoginRegisterLink();
+        loginRegisterPage.register(UserData.REGISTER_EMAIL, UserData.REGISTER_PASSWORD, UserData.REGISTER_CONFIRM_PASSWORD);
+        home.clickOnLogout().clickOnLoginRegisterLink();
     }
 
     @Test
-    public void registerPositiveTest() {
+    public void loginPositiveTest() {
 
         HomePage home = new HomePage(driver);
         LoginRegisterPage loginRegisterPage = new LoginRegisterPage(driver);
 
-        loginRegisterPage.register(UserData.REGISTER_EMAIL, UserData.REGISTER_PASSWORD, UserData.REGISTER_CONFIRM_PASSWORD);
+        loginRegisterPage.login(UserData.REGISTER_EMAIL, UserData.REGISTER_PASSWORD);
 
-        Assert.assertTrue(home.getTextAlertIcon().contains("Thanks for registering!"));
+        Assert.assertTrue(home.getTextAlertIcon().contains("Welcome back"));
         Assert.assertTrue(home.isLogoutLinkLinkExist());
     }
 
     @AfterMethod
-    public void tearDown() {
-
+    public void tearDown(){
         HomePage home = new HomePage(driver);
         ProfilePage profilePage = new ProfilePage(driver);
 

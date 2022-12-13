@@ -1,4 +1,4 @@
-package com.telran.oscar.tests.login;
+package com.telran.oscar.tests.login.negative;
 
 import com.telran.oscar.pages.HomePage;
 import com.telran.oscar.pages.LoginRegisterPage;
@@ -10,8 +10,7 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-public class LoginTests extends TestBase {
-
+public class LoginWithInvalidPassword extends TestBase {
     @BeforeMethod
     public void ensurePrecondition() {
 
@@ -24,22 +23,23 @@ public class LoginTests extends TestBase {
     }
 
     @Test
-    public void loginPositiveTest() {
+    public void loginNegativeTest() {
 
         HomePage home = new HomePage(driver);
         LoginRegisterPage loginRegisterPage = new LoginRegisterPage(driver);
 
-        loginRegisterPage.login(UserData.REGISTER_EMAIL, UserData.REGISTER_PASSWORD);
+        loginRegisterPage.login(UserData.REGISTER_EMAIL, UserData.REGISTER_WRONG_CONFIRM_PASSWORD);
 
-        Assert.assertTrue(home.getTextAlertIcon().contains("Welcome back"));
-        Assert.assertTrue(home.isLogoutLinkLinkExist());
+        Assert.assertTrue(home.isLoginRegisterLinkLinkExist());
     }
 
     @AfterMethod
     public void tearDown(){
         HomePage home = new HomePage(driver);
         ProfilePage profilePage = new ProfilePage(driver);
+        LoginRegisterPage loginRegisterPage = new LoginRegisterPage(driver);
 
+        loginRegisterPage.login(UserData.REGISTER_EMAIL, UserData.REGISTER_PASSWORD);
         home.clickOnAccount();
         profilePage.deleteProfile(UserData.REGISTER_PASSWORD);
     }
