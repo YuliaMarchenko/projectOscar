@@ -1,8 +1,9 @@
-package com.telran.oscar.tests;
+package com.telran.oscar.tests.login;
 
 import com.telran.oscar.pages.HomePage;
 import com.telran.oscar.pages.LoginRegisterPage;
 import com.telran.oscar.pages.ProfilePage;
+import com.telran.oscar.tests.TestBase;
 import data.UserData;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;

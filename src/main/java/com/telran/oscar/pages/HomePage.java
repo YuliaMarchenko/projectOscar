@@ -19,6 +19,10 @@ public class HomePage extends BasePage {
         return new LoginRegisterPage(driver);
     }
 
+    public boolean isLoginRegisterLinkLinkExist(){
+        return (driver.findElements(By.id("login_link")).size() > 0);
+    }
+
     @FindBy(css = ".alertinner.wicon")
     WebElement alertIcon;
 

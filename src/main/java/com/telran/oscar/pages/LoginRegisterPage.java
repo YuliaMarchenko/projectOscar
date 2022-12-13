@@ -47,7 +47,15 @@ public class LoginRegisterPage extends BasePage {
         return new HomePage(driver);
     }
 
-    public boolean existErrorEmailAddressExist() {
+    public boolean existErrorEmailAddress() {
         return driver.findElements(By.xpath("//*[contains(text(),' A user with that email address already exists')]")).size() > 0;
+    }
+
+    public boolean existErrorRegisterFails() {
+        return driver.findElements(By.cssSelector(".alert.alert-danger")).size() > 0;
+    }
+
+    public boolean registrationEmailFieldIsEmail() {
+        return registerEmail.getAttribute("type").equals("email");
     }
 }

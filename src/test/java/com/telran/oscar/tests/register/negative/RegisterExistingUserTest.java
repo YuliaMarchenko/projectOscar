@@ -32,7 +32,7 @@ public class RegisterExistingUserTest extends TestBase {
         home.clickOnLoginRegisterLink();
         loginRegisterPage.register(UserData.REGISTER_EMAIL, UserData.REGISTER_PASSWORD, UserData.REGISTER_CONFIRM_PASSWORD);
 
-        Assert.assertTrue(loginRegisterPage.existErrorEmailAddressExist());
+        Assert.assertTrue(loginRegisterPage.existErrorEmailAddress());
     }
 
     @AfterMethod
