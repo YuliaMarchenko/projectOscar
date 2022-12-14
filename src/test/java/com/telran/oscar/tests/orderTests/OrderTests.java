@@ -1,7 +1,8 @@
-package com.telran.oscar.tests;
+package com.telran.oscar.tests.orderTests;
 
 import com.telran.oscar.pages.CheckoutPage;
 import com.telran.oscar.pages.HomePage;
+import com.telran.oscar.tests.TestBase;
 import data.UserData;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;

@@ -1,4 +1,4 @@
-package com.telran.oscar.tests.login.negative;
+package com.telran.oscar.tests.loginTests.negative;
 
 import com.telran.oscar.pages.HomePage;
 import com.telran.oscar.pages.LoginRegisterPage;
