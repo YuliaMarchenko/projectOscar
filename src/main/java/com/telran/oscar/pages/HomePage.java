@@ -50,11 +50,5 @@ public class HomePage extends BasePage {
         return (driver.findElements(By.id("logout_link")).size() > 0);
     }
 
-    @FindBy(xpath = "//*[contains(text(),'All products')]")
-    WebElement allProducts;
 
-    public AllProductsPage clickOnAllProducts(){
-        click(allProducts);
-        return new AllProductsPage(driver);
-    }
 }

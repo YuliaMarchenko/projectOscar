@@ -1,6 +1,7 @@
 package data;
 
-public class ShippingAddressData {
+public class CheckoutWithoutRegisterData {
+    public static final String MY_EMAIL_ADDRESS_IS = "mytestemail@test.com";
     public static final String FIRST_NAME = "Vasia";
     public static final String LAST_NAME = "Sidorov";
     public static final String FIRST_LINE_OF_ADDRESS = "Pushkinskay 12";

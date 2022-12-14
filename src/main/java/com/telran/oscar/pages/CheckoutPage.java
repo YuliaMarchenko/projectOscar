@@ -1,18 +1,28 @@
 package com.telran.oscar.pages;
 
-import data.ShippingAddressData;
+import data.CheckoutWithoutRegisterData;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.Select;
 
-public class CheckoutPage extends BasePage{
+public class CheckoutPage extends BasePage {
 
     public CheckoutPage(WebDriver driver) {
         super(driver);
     }
 
-    @FindBy()
-    WebElement proceedToCheckout;
+    @FindBy(id = "id_username")
+    WebElement myEmailAddressIs;
+
+    @FindBy(xpath = "//button[@type='submit' and contains(., 'Continue')]")
+    WebElement buttonContinue;
+
+    public CheckoutPage fillWhoAreYou() {
+        type(myEmailAddressIs, CheckoutWithoutRegisterData.MY_EMAIL_ADDRESS_IS);
+        click(buttonContinue);
+        return this;
+    }
 
     @FindBy(id = "id_first_name")
     WebElement firstName;
@@ -32,14 +42,39 @@ public class CheckoutPage extends BasePage{
     @FindBy(id = "id_country")
     WebElement country;
 
-    public CheckoutPage order(){
-        click(proceedToCheckout);
-        type(firstName, ShippingAddressData.FIRST_NAME);
-        type(lastName, ShippingAddressData.LAST_NAME);
-        type(firstLineOfAddress, ShippingAddressData.FIRST_LINE_OF_ADDRESS);
-        type(city, ShippingAddressData.CITY);
-        type(postcode, ShippingAddressData.POSTCODE);
-        type(country, ShippingAddressData.COUNTRY);
+    public CheckoutPage fillWhereShouldWeShipTo() {
+        type(firstName, CheckoutWithoutRegisterData.FIRST_NAME);
+        type(lastName, CheckoutWithoutRegisterData.LAST_NAME);
+        type(firstLineOfAddress, CheckoutWithoutRegisterData.FIRST_LINE_OF_ADDRESS);
+        type(city, CheckoutWithoutRegisterData.CITY);
+        type(postcode, CheckoutWithoutRegisterData.POSTCODE);
+        Select selectCountry = new Select(country);
+        selectCountry.selectByVisibleText(CheckoutWithoutRegisterData.COUNTRY);
+        click(buttonContinue);
         return this;
+    }
+
+    @FindBy(id = "view_preview")
+    WebElement buttonContinuePayment;
+
+    public CheckoutPage choosePayment() {
+        click(buttonContinuePayment);
+        return this;
+    }
+
+    @FindBy(id = "place-order")
+    WebElement placeOrder;
+
+    public CheckoutPage previewOrder() {
+        click(placeOrder);
+        return this;
+    }
+
+    @FindBy(xpath = "//*[contains(text(),'Continue shopping')]")
+    WebElement continueShopping;
+
+    public AllProductsPage confirmation() {
+        click(continueShopping);
+        return new AllProductsPage(driver);
     }
 }
