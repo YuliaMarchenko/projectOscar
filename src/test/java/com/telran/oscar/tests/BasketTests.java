@@ -6,7 +6,7 @@ import com.telran.oscar.pages.SidePanelPage;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-public class basketTests extends TestBase {
+public class BasketTests extends TestBase {
 
     @Test
     public void addProductInBasket(){

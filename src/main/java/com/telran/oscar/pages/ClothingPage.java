@@ -1,6 +1,5 @@
 package com.telran.oscar.pages;
 
-import com.telran.oscar.pages.BasePage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 

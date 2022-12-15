@@ -14,7 +14,7 @@ public class BasketPage extends HomePage{
         return driver.findElements(By.xpath("//h1[contains(text(),'Basket')]")).size() > 0;
     }
 
-    @FindBy(xpath = "//*[contains(text),'Proceed to checkout']")
+    @FindBy(xpath = "//*[contains(text(),'Proceed to checkout')]")
     WebElement proceedToCheckout;
 
     public CheckoutPage clickProceedToCheckout(){
