@@ -21,4 +21,11 @@ public class BasketPage extends HomePage{
         click(proceedToCheckout);
         return new CheckoutPage(driver);
     }
+
+    @FindBy(xpath = "//th[@class='total text-right']")
+    WebElement basketTotal;
+
+    public String getPriceBasketTotalAsString() {
+        return basketTotal.getText();
+    }
 }

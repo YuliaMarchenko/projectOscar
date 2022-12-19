@@ -54,4 +54,27 @@ public class BooksPage extends BasePage {
         click(checkoutNow);
         return new CheckoutPage(driver);
     }
+
+    @FindBy(xpath = "//li[1]//div[@class='product_price w-100']//p[@class='price_color']")
+    WebElement priceFirstBook;
+
+    public double getPriceFirstBook(){
+        return getPriceBook(priceFirstBook);
+    }
+
+    public String getPriceFirstBookAsString(){
+        return priceFirstBook.getText();
+    }
+
+    @FindBy(xpath = "//li[2]//div[@class='product_price w-100']//p[@class='price_color']")
+    WebElement priceSecondBook;
+
+    public double getPriceSecondBook(){
+        return getPriceBook(priceSecondBook);
+    }
+
+    public double getPriceBook(WebElement priceBook){
+        String price = priceBook.getText();
+        return 0.00;
+    }
 }

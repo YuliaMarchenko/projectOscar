@@ -16,8 +16,10 @@ public class BasketTests extends TestBase {
         BasketPage basketPage = new BasketPage(driver);
 
         sidePanelPage.clickOnBooksLink();
+        String expectedResultPriceBook = booksPage.getPriceFirstBookAsString();
         booksPage.addProductInBasketAndViewBasket();
 
+        Assert.assertEquals(expectedResultPriceBook, basketPage.getPriceBasketTotalAsString());
         Assert.assertTrue(basketPage.existHeaderBasket());
     }
 }
