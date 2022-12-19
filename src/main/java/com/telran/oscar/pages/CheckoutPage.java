@@ -70,11 +70,28 @@ public class CheckoutPage extends BasePage {
         return this;
     }
 
+    @FindBy(xpath = "//h1")
+    WebElement numberOfOrder;
+
+    public String getNumberOfOrder(){
+        return numberOfOrder.getText()
+                .replace("Order ", "")
+                .replace(": confirmation", "");
+    }
+
     @FindBy(xpath = "//*[contains(text(),'Continue shopping')]")
     WebElement continueShopping;
 
     public AllProductsPage confirmation() {
         click(continueShopping);
         return new AllProductsPage(driver);
+    }
+
+    @FindBy(css = ".btn.btn-primary.btn-large.ship-address")
+    WebElement shipToThisAddress;
+
+    public CheckoutPage clickOnShipToThisAddress(){
+        click(shipToThisAddress);
+        return this;
     }
 }

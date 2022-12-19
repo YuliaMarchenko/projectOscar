@@ -34,15 +34,23 @@ public class BooksPage extends BasePage {
         return driver.findElements(By.xpath("//h1[contains(text(),'Hacking')]")).size() > 0;
     }
 
-    @FindBy(xpath ="//*[contains(text(),'Add to basket')]")
-    WebElement addToBasket;
+    @FindBy(xpath ="(//*[contains(text(),'Add to basket')])[1]")
+    WebElement addFirstProductToBasket;
 
     @FindBy(xpath = "//*[contains(text(),'View basket')]")
     WebElement viewBasket;
 
     public BasketPage addProductInBasketAndViewBasket(){
-        click(addToBasket);
+        click(addFirstProductToBasket);
         click(viewBasket);
+        return new BasketPage(driver);
+    }
+
+    @FindBy(xpath = "(//*[contains(text(),'Add to basket')])[2]")
+    WebElement addSecondProductToBasket;
+
+    public BasketPage addSecondProductInBasket(){
+        click(addSecondProductToBasket);
         return new BasketPage(driver);
     }
 
@@ -50,7 +58,7 @@ public class BooksPage extends BasePage {
     WebElement checkoutNow;
 
     public CheckoutPage addProductAndCheckoutNow(){
-        click(addToBasket);
+        click(addFirstProductToBasket);
         click(checkoutNow);
         return new CheckoutPage(driver);
     }
@@ -74,7 +82,6 @@ public class BooksPage extends BasePage {
     }
 
     public double getPriceBook(WebElement priceBook){
-        String price = priceBook.getText();
-        return 0.00;
+        return Double.parseDouble(priceBook.getText().replace("£", ""));
     }
 }

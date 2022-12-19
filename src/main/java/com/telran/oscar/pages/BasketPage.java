@@ -22,10 +22,21 @@ public class BasketPage extends HomePage{
         return new CheckoutPage(driver);
     }
 
-    @FindBy(xpath = "//th[@class='total text-right']")
+    @FindBy(xpath = "(//th[@class='total text-right'])[1]")
     WebElement basketTotal;
 
     public String getPriceBasketTotalAsString() {
         return basketTotal.getText();
+    }
+
+    public Double getPriceBasketTotalAsDouble() {
+        return Double.parseDouble(basketTotal.getText().replace("£", ""));
+    }
+
+    @FindBy(xpath = "//h3[@class='price_color']")
+    WebElement orderTotal;
+
+    public Double getPriceOrderTotalAsDouble() {
+        return Double.parseDouble(orderTotal.getText().replace("£", ""));
     }
 }
