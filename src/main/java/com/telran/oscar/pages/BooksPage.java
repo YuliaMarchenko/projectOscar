@@ -84,4 +84,44 @@ public class BooksPage extends BasePage {
     public double getPriceBook(WebElement priceBook){
         return Double.parseDouble(priceBook.getText().replace("£", ""));
     }
+
+    @FindBy(xpath = "(//h3//a)[5]")
+    WebElement bookForReview;
+
+    @FindBy(css = "#write_review")
+    WebElement writeReview;
+
+    @FindBy(css = "#id_title")
+    WebElement title;
+
+    @FindBy(xpath = "(//i[@class='fas fa-star'])[3]")
+    WebElement scoreThree;
+
+    @FindBy(css = "#id_body")
+    WebElement bodyReview;
+
+    @FindBy(css = "#id_name")
+    WebElement nameRevierer;
+
+    @FindBy(css = "#id_email")
+    WebElement emailRevierer;
+
+    @FindBy(xpath = "//button[contains(text(),'Save review')]")
+    WebElement saveReview;
+
+    public BooksPage writeReview(){
+        click(bookForReview);
+        click(writeReview);
+        type(title, "review of book");
+        click(scoreThree);
+        type(bodyReview, "I don't recommend");
+        type(nameRevierer, "Vasia");
+        type(emailRevierer, "emailVasia@test.com");
+        click(saveReview);
+        return this;
+    }
+
+    public boolean existCustomerReviews(){
+        return driver.findElements(By.xpath("//h2[contains(text(), 'Customer Reviews')]")).size() > 0;
+    }
 }
