@@ -56,4 +56,36 @@ public class CheckoutWithoutRegisterTests extends TestBase {
         Assert.assertTrue(allProductsPage.existHeaderAllProducts());
     }
 
+    @Test
+    public void checkoutWithoutRegisterAddTwoSameBookPositiveTest() {
+
+        SidePanelPage sidePanelPage = new SidePanelPage(driver);
+        BooksPage booksPage = new BooksPage(driver);
+        CheckoutPage checkoutPage = new CheckoutPage(driver);
+        AllProductsPage allProductsPage = new AllProductsPage(driver);
+        BasketPage basketPage = new BasketPage(driver);
+
+        sidePanelPage.clickOnBooksLink();
+        Double expectedPrice = 2 * booksPage.getPriceFirstBook();
+        booksPage.addProductInBasketAndViewBasket();
+        basketPage.changeQuantityBook("2");
+
+        basketPage.clickProceedToCheckout();
+
+        checkoutPage.fillWhoAreYou();
+        checkoutPage.fillWhereShouldWeShipTo();
+        checkoutPage.choosePayment();
+
+        Assert.assertEquals(expectedPrice, basketPage.getPriceBasketTotalAsDouble());
+        Assert.assertEquals(expectedPrice, basketPage.getPriceOrderTotalAsDouble());
+
+        checkoutPage.previewOrder();
+
+        Assert.assertEquals(expectedPrice, basketPage.getPriceBasketTotalAsDouble());
+        Assert.assertEquals(expectedPrice, basketPage.getPriceOrderTotalAsDouble());
+
+        checkoutPage.confirmation();
+
+        Assert.assertTrue(allProductsPage.existHeaderAllProducts());
+    }
 }

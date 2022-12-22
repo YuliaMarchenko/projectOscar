@@ -39,4 +39,16 @@ public class BasketPage extends HomePage{
     public Double getPriceOrderTotalAsDouble() {
         return Double.parseDouble(orderTotal.getText().replace("£", ""));
     }
+
+    @FindBy(css = "#id_form-0-quantity")
+    WebElement quantityBook;
+
+    @FindBy(css = ".input-group-append")
+    WebElement updateQuantity;
+
+    public BasketPage changeQuantityBook(String quantity){
+        type(quantityBook, quantity);
+        click(updateQuantity);
+        return this;
+    }
 }
